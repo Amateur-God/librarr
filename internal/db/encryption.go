@@ -10,6 +10,7 @@ import (
 	"log/slog"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 // KeyProvider is an interface for retrieving encryption keys.
@@ -66,7 +67,7 @@ func (kp *LocalFileKeyProvider) GetKey() ([]byte, error) {
 	}
 
 	// Decode hex-encoded key.
-	key, err := hex.DecodeString(string(data))
+	key, err := hex.DecodeString(strings.TrimSpace(string(data)))
 	if err != nil {
 		return nil, fmt.Errorf("decode key hex: %w", err)
 	}
