@@ -56,7 +56,7 @@ func (s *Server) handleCreateWebhook(w http.ResponseWriter, r *http.Request) {
 		// Validate webhook type
 		if err := ValidateEnumValue(cfg.Type, []string{"generic", "discord", "slack", "matrix"}); err != nil {
 			writeJSON(w, http.StatusBadRequest, map[string]interface{}{
-				"success": false, "error": "Invalid webhook type",
+				"success": false, "error": "Invalid webhook type. Must be one of: generic, discord, slack, matrix",
 			})
 			return
 		}
