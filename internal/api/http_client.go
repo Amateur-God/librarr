@@ -48,7 +48,7 @@ func NewSecureHTTPClient(requestTimeout time.Duration) *http.Client {
 		},
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			// Limit redirects to 5
-			if len(via) > 5 {
+			if len(via) >= 5 {
 				return ErrTooManyRedirects
 			}
 			return nil
