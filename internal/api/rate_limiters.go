@@ -73,6 +73,7 @@ func (d *DownloadRateLimiter) IsAllowed(userID string) (bool, int) {
 		if retryAfter < 1 {
 			retryAfter = 1
 		}
+		d.userDownloads[userID] = validEvents
 		return false, retryAfter
 	}
 
